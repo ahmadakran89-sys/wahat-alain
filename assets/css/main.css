@@ -12,7 +12,22 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+
+  /* **شريطُ التمرير محجوزٌ دائماً — وهذا يُصلح اهتزاز التنقّل.**
+
+     صفحاتُ الموقع تختلف أطوالاً: «الورش» أطول من «تواصل معنا». فصفحةٌ
+     تحتاج شريط تمرير وأخرى لا تحتاجه، والشريطُ يأخذ نحو 15px من عرض
+     النافذة.
+
+     فكان الانتقالُ بين صفحتين يُغيّر العرض المتاح فجأةً، فتقفز الترويسة
+     والمحتوى كلُّه جانباً — وهي «حركةُ الأزرار عند التنقّل» التي تُرى.
+
+     و`scrollbar-gutter: stable` يحجز مكانه ولو لم يُحتَج، فيبقى العرض
+     واحداً في الصفحات الخمس. */
+  scrollbar-gutter: stable;
+}
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -188,7 +203,18 @@ img { max-width: 100%; height: auto; display: block; }
   border: 2px solid transparent;
   border-radius: var(--r-full);
   cursor: pointer;
-  transition: all var(--t-fast);
+  /* **الخصائص تُسمّى، و`all` لا.**
+
+     كانت `transition: all`، فتُحرّك كلّ ما يتغيّر — ومنه `padding` و
+     `font-size` حين تنتقل الصفحة بين نقاط الانكسار. فيهتزّ الزرّ عند
+     تغيير حجم النافذة، ويثقل المتصفّح لأنّه يراقب كلّ خاصّية.
+
+     وتسميةُ ما يُحرَّك تُبقي الحركة على ما قُصد وحده. */
+  transition: background-color var(--t-fast),
+              color var(--t-fast),
+              transform var(--t-fast),
+              box-shadow var(--t-fast),
+              border-color var(--t-fast);
 }
 
 .btn--primary { background: var(--green-700); color: var(--white); }
@@ -406,7 +432,8 @@ img { max-width: 100%; height: auto; display: block; }
   border: 2px solid var(--line);
   border-radius: var(--r-md);
   cursor: pointer;
-  transition: all var(--t-fast);
+  /* لونان وحدهما يتغيّران هنا — فلا `all`. */
+  transition: background-color var(--t-fast), border-color var(--t-fast);
 }
 
 .check:hover { border-color: var(--green-500); background: var(--green-100); }

@@ -1,4 +1,6 @@
-node_modules/
+# sharp يُثبَّت للضغط وحده — لا يحتاجه الموقع في التشغيل
+*.tmp
 .DS_Store
 Thumbs.db
-*.tmp
+node_modules/
+package-lock.json

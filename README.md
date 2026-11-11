@@ -19,27 +19,33 @@
 ## التقنية
 
 HTML5 · CSS3 (Grid + Flexbox) · JavaScript — بلا إطارٍ ولا بناء.
-والسبب في `.antigravity/ARCHITECTURE.md`.
 
-## الوثائق
+**ولماذا بلا إطار:** المصحّح يفتح الكود ويقرأه، والعناصر المطلوبة في
+المساق (ترويسات، وروابط، وقوائم، وجدول، ونموذج) تُقرأ في HTML ولا
+تُقرأ في حزمةٍ مُصغَّرة. والموقع يعمل بالنقر المزدوج بلا خادم.
 
-| الملفّ | ما فيه |
+## الوسائط
+
+| الملفّ | السكربت الذي يبنيه |
 |---|---|
-| `.antigravity/ARCHITECTURE.md` | البنية والقرارات |
-| `.antigravity/PLAN.md` | الأهداف · الشخصيتان · المهامّ · الخريطة |
-| `.antigravity/TASKS.md` | توزيع المهامّ |
-| `.antigravity/USABILITY.md` | خطّة الاختبار ونتائجه |
-| `.antigravity/ASSETS.md` | الصور ومصادرها وتبرير الصيغ |
-| `.antigravity/AI_DISCLOSURE.md` | الإفصاح عن أدوات الذكاء الاصطناعي |
-| `docs/tasks/` | ورقةُ مهمّةٍ لكلّ عضو |
+| `assets/img/*.jpg` | `scripts/compress-images.mjs` |
+| `assets/img/growth.gif` | `scripts/make-growth-gif.mjs` |
+| `assets/video/umm-khaled.mp4` | `scripts/make-video.mjs` |
 
-## الصور المؤقّتة
-
-الصور الحالية مؤقّتة (SVG). وبعد وصول الحقيقية:
+وتحتاج `sharp` (في `package.json`) و `ffmpeg` في `PATH`:
 
 ```bash
-node swap-placeholders.mjs --restore
+npm install
+node scripts/make-growth-gif.mjs
 ```
+
+## إفصاح
+
+صور الموقع **مولَّدة بالذكاء الاصطناعي**، والمبادرة افتراضية أُنشئت
+لغرض المشروع الدراسيّ. والتفصيل الكامل في تقرير المشروع.
+
+> **ملاحظة:** وثائق التخطيط وتوزيع المهامّ لا تُنشر في هذا المستودع —
+> تحمل أرقاماً جامعية، وتُسلَّم مع التقرير.
 
 ## الفريق
 

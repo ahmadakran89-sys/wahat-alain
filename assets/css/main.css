@@ -1,0 +1,623 @@
+/* ──────────────────────────────────────────────────────────────────────────
+   واحة — الأنماط.
+
+   والخصائص **منطقية لا اتجاهية**: `margin-inline-start` لا `margin-left`.
+   فالمتصفّح يقلبها في RTL، ولا يحتاج الموقع ورقةَ أنماطٍ ثانية ولا
+   `[dir="rtl"]` في كلّ قاعدة.
+
+   الوثائق: .antigravity/ARCHITECTURE.md
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* ── الأساس ─────────────────────────────────────────────────────────────── */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  line-height: var(--lh-base);
+  color: var(--ink);
+  background: var(--page);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-head);
+  line-height: var(--lh-tight);
+  margin: 0 0 var(--sp-4);
+  color: var(--green-900);
+}
+
+h1 { font-size: var(--fs-3xl); }
+h2 { font-size: var(--fs-2xl); }
+h3 { font-size: var(--fs-xl); }
+
+p { margin: 0 0 var(--sp-4); }
+
+a { color: var(--green-700); }
+a:hover { color: var(--green-500); }
+
+img { max-width: 100%; height: auto; display: block; }
+
+/* والتركيز ظاهرٌ دائماً: من يتنقّل بلوحة المفاتيح يجب أن يرى أين هو.
+   وحذفُ `outline` بلا بديلٍ عطبُ إتاحةٍ لا اختيارُ ذوق. */
+:focus-visible {
+  outline: 3px solid var(--date-600);
+  outline-offset: 2px;
+  border-radius: var(--r-sm);
+}
+
+/* ── التخطيط ────────────────────────────────────────────────────────────── */
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section { padding-block: var(--sp-9); }
+.section--tight { padding-block: var(--sp-7); }
+.section--alt { background: var(--white); }
+
+.section__head {
+  text-align: center;
+  max-width: 680px;
+  margin-inline: auto;
+  margin-block-end: var(--sp-7);
+}
+
+.section__head p {
+  font-size: var(--fs-lg);
+  color: var(--ink-soft);
+}
+
+/* ── الشبكة ─────────────────────────────────────────────────────────────
+   **١٢ عموداً** لأنّها تقبل القسمة على ٢ و٣ و٤ و٦ — فتُبنى صفوفٌ من
+   بطاقتين أو ثلاثٍ أو أربعٍ بلا كسور. وتنهار إلى عمودٍ واحد تحت 768px.
+
+   الوثائق: ARCHITECTURE.md §"الشبكة والتخطيط" */
+.grid {
+  display: grid;
+  gap: var(--sp-5);
+  grid-template-columns: repeat(12, 1fr);
+}
+
+.col-4  { grid-column: span 4; }
+.col-6  { grid-column: span 6; }
+.col-12 { grid-column: span 12; }
+
+/* ── الترويسة والتنقّل ──────────────────────────────────────────────────
+   **ثابتةٌ في كلّ الصفحات** — مطلبٌ صريح في ملفّ المشروع. */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(247, 242, 234, 0.92);
+  backdrop-filter: blur(10px);
+  border-block-end: 1px solid var(--line);
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  min-height: 72px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-family: var(--font-head);
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  color: var(--green-700);
+  text-decoration: none;
+}
+
+.logo img { width: 40px; height: 40px; }
+
+.nav__list {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav__link {
+  display: block;
+  padding: var(--sp-2) var(--sp-4);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+  border-radius: var(--r-full);
+  transition: background var(--t-fast), color var(--t-fast);
+}
+
+.nav__link:hover { background: var(--green-100); color: var(--green-700); }
+
+/* الصفحة الحالية مُعلَّمةٌ بـ`aria-current="page"` لا بصنفٍ وحده:
+   اللون يقوله للعين، والسمة تقوله لقارئ الشاشة. */
+.nav__link[aria-current="page"] {
+  background: var(--green-700);
+  color: var(--white);
+}
+
+/* زرّ القائمة على الهاتف — مخفيٌّ على الشاشات الكبيرة */
+.nav__toggle {
+  display: none;
+  width: 48px;
+  height: 48px;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  font-size: 22px;
+  color: var(--ink);
+}
+
+/* ── الأزرار ────────────────────────────────────────────────────────────
+   و48px ارتفاعاً: هدفُ ضغطٍ يُصاب بالإصبع، وهو فوق حدّ WCAG (44px). */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  min-height: 48px;
+  padding: var(--sp-3) var(--sp-6);
+  font-family: var(--font-head);
+  font-size: var(--fs-base);
+  font-weight: 600;
+  text-decoration: none;
+  border: 2px solid transparent;
+  border-radius: var(--r-full);
+  cursor: pointer;
+  transition: all var(--t-fast);
+}
+
+.btn--primary { background: var(--green-700); color: var(--white); }
+.btn--primary:hover {
+  background: var(--green-500);
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn--accent { background: var(--date-600); color: var(--white); }
+.btn--accent:hover { background: #B45309; color: var(--white); transform: translateY(-2px); }
+
+.btn--ghost {
+  background: transparent;
+  color: var(--green-700);
+  border-color: var(--green-700);
+}
+.btn--ghost:hover { background: var(--green-700); color: var(--white); }
+
+/* ── الواجهة (Hero) ─────────────────────────────────────────────────────── */
+
+.hero {
+  padding-block: var(--sp-9);
+  background:
+    linear-gradient(rgba(247, 242, 234, 0.86), rgba(247, 242, 234, 0.94)),
+    url('../img/hero-rooftop.jpg') center / cover no-repeat;
+}
+
+.hero__inner {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: var(--sp-8);
+  align-items: center;
+}
+
+.hero h1 {
+  font-size: var(--fs-hero);
+  margin-block-end: var(--sp-5);
+}
+
+/* والتمييز بخلفيةٍ لا بلونٍ وحده: لونُ نصٍّ مختلف قد لا يُميَّز عند
+   عمى الألوان، والخلفيةُ تُرى. */
+.hero h1 .mark {
+  background: linear-gradient(transparent 62%, var(--date-100) 62%);
+  padding-inline: var(--sp-1);
+}
+
+.hero__lede {
+  font-size: var(--fs-lg);
+  color: var(--ink-soft);
+  margin-block-end: var(--sp-6);
+}
+
+.hero__actions { display: flex; flex-wrap: wrap; gap: var(--sp-3); }
+
+/* ── البطاقات ───────────────────────────────────────────────────────────── */
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: var(--sp-6);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--t-base), box-shadow var(--t-base);
+  /* والبطاقات في شبكةٍ تتساوى ارتفاعاً: `height: 100%` مع Grid يجعل
+     قيعانها مستويةً مهما اختلفت أطوال نصوصها. */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+
+.card__icon {
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  background: var(--green-100);
+  border-radius: var(--r-md);
+  margin-block-end: var(--sp-4);
+  font-size: 28px;
+}
+
+.card__meta {
+  margin-block-start: auto;
+  padding-block-start: var(--sp-4);
+  font-size: var(--fs-sm);
+  color: var(--ink-soft);
+}
+
+/* ── الجدول ─────────────────────────────────────────────────────────────
+   **بندٌ مطلوب**: جدولٌ واحد على الأقلّ. وموضعه روزنامة الزراعة في
+   صفحة الورش.
+
+   و`<caption>` و`scope` ليسا تزييناً: الأوّل يقول لقارئ الشاشة ما هذا
+   الجدول قبل الدخول فيه، والثاني يربط كلّ خلية برأس عمودها — فيُقرأ
+   «يناير، يُزرع: طماطم» لا «يناير… طماطم» منفصلتين. */
+
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--surface);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 640px;
+}
+
+.table caption {
+  padding: var(--sp-4);
+  font-family: var(--font-head);
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  color: var(--green-900);
+  text-align: start;
+  border-block-end: 1px solid var(--line);
+}
+
+.table th,
+.table td {
+  padding: var(--sp-4);
+  text-align: start;
+  border-block-end: 1px solid var(--line);
+}
+
+.table thead th {
+  background: var(--green-700);
+  color: var(--white);
+  font-family: var(--font-head);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+}
+
+.table tbody th {
+  font-family: var(--font-head);
+  font-weight: 700;
+  color: var(--green-700);
+  background: var(--green-100);
+}
+
+/* تظليلُ الصفوف بالتناوب: العين تتبع الصفّ الطويل بلا أن تقفز إلى جاره. */
+.table tbody tr:nth-child(even) td { background: var(--sand-100); }
+.table tbody tr:hover td { background: var(--date-100); }
+.table tbody tr:last-child th,
+.table tbody tr:last-child td { border-block-end: none; }
+
+/* ── النموذج ────────────────────────────────────────────────────────────
+   **بندٌ مطلوب**: نموذجٌ يضمّ صندوق نصّ ومربّعات اختيار. */
+
+.form { display: grid; gap: var(--sp-5); }
+
+.field { display: grid; gap: var(--sp-2); }
+
+.field__label {
+  font-family: var(--font-head);
+  font-size: var(--fs-base);
+  font-weight: 600;
+}
+
+/* والتسمية أصغر من قيمتها بأربع نقاط على الأقلّ: فرقُ نقطتين يُقرأ
+   اهتزازاً، وأربعٌ تُقرأ تدرّجاً. */
+.field__hint { font-size: var(--fs-xs); color: var(--ink-soft); }
+
+.field__req { color: var(--date-600); }
+
+.input,
+.textarea,
+.select {
+  width: 100%;
+  min-height: 52px;
+  padding: var(--sp-3) var(--sp-4);
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  color: var(--ink);
+  background: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: var(--r-md);
+  transition: border-color var(--t-fast);
+}
+
+.input:focus,
+.textarea:focus,
+.select:focus { border-color: var(--green-700); }
+
+.textarea { min-height: 150px; resize: vertical; line-height: var(--lh-base); }
+
+.input[aria-invalid="true"],
+.textarea[aria-invalid="true"] { border-color: #DC2626; }
+
+.error {
+  font-size: var(--fs-xs);
+  color: #DC2626;
+  min-height: 20px;
+}
+
+/* مربّعات الاختيار — والمربّع 22px لا 13px الافتراضي: الافتراضي هدفُ
+   ضغطٍ صغيرٌ على الهاتف، والتسمية كلُّها قابلةٌ للضغط عبر `<label>`. */
+.checks {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--sp-3);
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  background: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: var(--r-md);
+  cursor: pointer;
+  transition: all var(--t-fast);
+}
+
+.check:hover { border-color: var(--green-500); background: var(--green-100); }
+
+.check input[type="checkbox"],
+.check input[type="radio"] {
+  width: 22px;
+  height: 22px;
+  accent-color: var(--green-700);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.check:has(input:checked) {
+  border-color: var(--green-700);
+  background: var(--green-100);
+}
+
+/* رسالة النجاح — تظهر بعد الإرسال */
+.form__success {
+  display: none;
+  padding: var(--sp-5);
+  background: var(--green-100);
+  border: 2px solid var(--green-700);
+  border-radius: var(--r-md);
+  color: var(--green-900);
+  font-weight: 600;
+}
+
+.form__success.is-shown { display: block; }
+
+/* ── الفيديو ────────────────────────────────────────────────────────────
+   **بندٌ مطلوب**: مقطع فيديو واحد على الأقلّ.
+
+   ونسبةٌ ثابتة 16/9 فيحجز مكانه قبل التحميل ولا يقفز التخطيط. */
+
+.video {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  background: var(--green-900);
+}
+
+.video iframe,
+.video video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ── الخطوات ────────────────────────────────────────────────────────────── */
+
+.steps { counter-reset: step; display: grid; gap: var(--sp-5); }
+
+.step {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: var(--sp-4);
+  align-items: start;
+  padding: var(--sp-5);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+}
+
+.step::before {
+  counter-increment: step;
+  content: counter(step);
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  font-family: var(--font-head);
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  color: var(--white);
+  background: var(--green-700);
+  border-radius: 50%;
+}
+
+.step h3 { margin-block-end: var(--sp-2); }
+.step p { margin: 0; }
+
+/* ── الأرقام ────────────────────────────────────────────────────────────── */
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--sp-5);
+}
+
+.stat { text-align: center; padding: var(--sp-5); }
+
+.stat__num {
+  font-family: var(--font-head);
+  font-size: var(--fs-3xl);
+  font-weight: 700;
+  color: var(--date-600);
+  display: block;
+}
+
+.stat__label { font-size: var(--fs-sm); color: var(--ink-soft); }
+
+/* ── التذييل ────────────────────────────────────────────────────────────── */
+
+.footer {
+  background: var(--green-900);
+  color: var(--sand-300);
+  padding-block: var(--sp-8) var(--sp-5);
+  margin-block-start: var(--sp-9);
+}
+
+.footer h3 { color: var(--white); font-size: var(--fs-base); }
+
+.footer a { color: var(--sand-300); text-decoration: none; }
+.footer a:hover { color: var(--white); text-decoration: underline; }
+
+.footer__list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--sp-2); }
+
+.footer__bottom {
+  margin-block-start: var(--sp-6);
+  padding-block-start: var(--sp-5);
+  border-block-start: 1px solid rgba(233, 220, 201, 0.2);
+  text-align: center;
+  font-size: var(--fs-sm);
+}
+
+/* ── أدوات ──────────────────────────────────────────────────────────────── */
+
+.text-center { text-align: center; }
+.mt-6 { margin-block-start: var(--sp-6); }
+
+/* يُقرأ بقارئ الشاشة ولا يُرى: لروابط التخطّي وتسميات الأيقونات. */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* رابط التخطّي: أوّل ما يصله التاب، ويقفز إلى المحتوى بلا المرور على
+   القائمة كلّها في كلّ صفحة. */
+.skip {
+  position: absolute;
+  inset-inline-start: var(--sp-4);
+  top: -100px;
+  z-index: 100;
+  padding: var(--sp-3) var(--sp-5);
+  background: var(--green-700);
+  color: var(--white);
+  border-radius: var(--r-sm);
+  transition: top var(--t-fast);
+}
+
+.skip:focus { top: var(--sp-3); color: var(--white); }
+
+/* ── التجاوب ────────────────────────────────────────────────────────────
+   **بندٌ مطلوب**: عرضٌ سليم على الحاسوب والهاتف.
+
+   ونقطتا انكسار لا خمس: 960px للّوحي، و768px للهاتف. والزيادة تعني
+   حالاتٍ تُختبر ولا تُرى. */
+
+@media (max-width: 960px) {
+  .hero__inner { grid-template-columns: 1fr; }
+  .col-4 { grid-column: span 6; }
+}
+
+@media (max-width: 768px) {
+  :root { --fs-hero: 34px; --fs-3xl: 28px; --fs-2xl: 24px; }
+
+  .section { padding-block: var(--sp-7); }
+
+  .col-4, .col-6 { grid-column: span 12; }
+
+  /* القائمة تنطوي خلف زرّ: ستّة روابط في صفٍّ واحد على 360px تتداخل. */
+  .nav__toggle { display: inline-flex; }
+
+  .nav__list {
+    display: none;
+    position: absolute;
+    inset-inline: 0;
+    top: 72px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: var(--sp-3);
+    background: var(--surface);
+    border-block-end: 1px solid var(--line);
+    box-shadow: var(--shadow-md);
+  }
+
+  .nav__list.is-open { display: flex; }
+
+  .nav__link { padding: var(--sp-4); border-radius: var(--r-sm); }
+
+  .step { grid-template-columns: 1fr; }
+  .step::before { margin-block-end: var(--sp-2); }
+}
+
+/* ── الطباعة ────────────────────────────────────────────────────────────
+   التقرير يحتاج لقطاتٍ ونسخاً مطبوعة: فالقائمة والأزرار تُحذف، والروابط
+   تُظهر عناوينها. */
+@media print {
+  .header, .footer, .hero__actions, .nav__toggle { display: none; }
+  body { background: var(--white); font-size: 12pt; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 10pt; }
+}

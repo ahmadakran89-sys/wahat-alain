@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<!--
+  واحة — الورش وروزنامة الزراعة.
+
+  ما تحمله من بنود المشروع المطلوبة:
+    • **الجدول** (بندٌ مطلوب: جدولٌ واحد على الأقلّ) — روزنامة الزراعة
+    • بطاقات الورش
+    • قوائم
+
+  ولماذا الجدول هنا لا في صفحةٍ مستقلّة: من يبحث عن موسم الزراعة يبحث
+  غالباً عن ورشةٍ تناسبه. وهذا **افتراضٌ يُختبر** — انظر
+  .antigravity/USABILITY.md §"ما نتوقّعه".
+-->
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الورش وروزنامة الزراعة — واحة</title>
+  <meta name="description" content="ورشُ واحة الشهرية في العين، وروزنامةُ الزراعة: ماذا تزرع في كلّ شهرٍ من السنة.">
+
+  <link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+
+  <a class="skip" href="#main">تخطَّ إلى المحتوى</a>
+
+  <header class="header">
+    <div class="container header__inner">
+      <a class="logo" href="index.html">
+        <img src="assets/img/logo.svg" alt="" width="40" height="40">
+        <span>واحة</span>
+      </a>
+      <button class="nav__toggle" type="button"
+              aria-expanded="false" aria-controls="nav-list"
+              aria-label="افتح القائمة">☰</button>
+      <nav aria-label="التنقّل الرئيس">
+        <ul class="nav__list" id="nav-list">
+          <li><a class="nav__link" href="index.html">الرئيسية</a></li>
+          <li><a class="nav__link" href="about.html">من نحن</a></li>
+          <li><a class="nav__link" href="workshops.html" aria-current="page">الورش</a></li>
+          <li><a class="nav__link" href="guide.html">دليل المبتدئ</a></li>
+          <li><a class="nav__link" href="contact.html">تواصل معنا</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <section class="section section--tight">
+      <div class="container">
+        <div class="section__head">
+          <h1>الورش وروزنامة الزراعة</h1>
+          <p>
+            ورشةٌ كلّ شهر، وروزنامةٌ تقول لك ماذا يُزرع الآن في مناخ العين.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── بطاقات الورش ──────────────────────────────────────────────── -->
+    <section class="section section--alt section--tight">
+      <div class="container">
+        <h2 class="text-center" style="margin-block-end: var(--sp-7);">ورشُ هذا الموسم</h2>
+
+        <div class="grid">
+          <article class="col-4">
+            <div class="card">
+              <div class="card__icon" aria-hidden="true">🌿</div>
+              <h3>ابدأ بحوضٍ واحد</h3>
+              <p>
+                للمبتدئين تماماً. نركّب حوضاً من الصفر: التربة، والتصريف،
+                وأوّل شتلة. تخرج ومعك حوضٌ جاهز.
+              </p>
+              <ul style="font-size: var(--fs-sm); padding-inline-start: var(--sp-5); line-height: 2;">
+                <li>السبت ٦ ديسمبر ٢٠٢٦ · ٤–٦ م</li>
+                <li>حديقة الجاهلي، العين</li>
+                <li>بقي ٨ مقاعد من ٢٥</li>
+              </ul>
+              <p class="card__meta">
+                <a class="btn btn--accent" href="contact.html" style="width: 100%;">احجز مقعدك</a>
+              </p>
+            </div>
+          </article>
+
+          <article class="col-4">
+            <div class="card">
+              <div class="card__icon" aria-hidden="true">💧</div>
+              <h3>الريّ الذكيّ</h3>
+              <p>
+                كيف تسقي في حرٍّ يتجاوز الأربعين؟ ننصب نظام تنقيطٍ بسيطاً
+                بمؤقّت، وتتعلّم متى تسقي ومتى تمتنع.
+              </p>
+              <ul style="font-size: var(--fs-sm); padding-inline-start: var(--sp-5); line-height: 2;">
+                <li>السبت ٣ يناير ٢٠٢٧ · ٤–٦ م</li>
+                <li>حديقة الجاهلي، العين</li>
+                <li>التسجيل مفتوح</li>
+              </ul>
+              <p class="card__meta">
+                <a class="btn btn--ghost" href="contact.html" style="width: 100%;">احجز مقعدك</a>
+              </p>
+            </div>
+          </article>
+
+          <article class="col-4">
+            <div class="card">
+              <div class="card__icon" aria-hidden="true">🌸</div>
+              <h3>سمادٌ من مطبخك</h3>
+              <p>
+                بقايا الخضار والقهوة تصير سماداً في ستّة أسابيع. ورشةٌ
+                عملية: تخرج بصندوق كمبوستٍ صغير.
+              </p>
+              <ul style="font-size: var(--fs-sm); padding-inline-start: var(--sp-5); line-height: 2;">
+                <li>السبت ٧ فبراير ٢٠٢٧ · ٤–٦ م</li>
+                <li>حديقة الجاهلي، العين</li>
+                <li>التسجيل يفتح في يناير</li>
+              </ul>
+              <p class="card__meta">
+                <a class="btn btn--ghost" href="contact.html" style="width: 100%;">ذكّرني</a>
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ الجدول — بندٌ مطلوب ════════════════════════════════════════
+
+         و`<caption>` و`scope` ليسا تزييناً:
+           • `caption` يقول لقارئ الشاشة ما هذا الجدول قبل الدخول فيه.
+           • `scope="col"` و`scope="row"` يربطان كلّ خلية برأسها — فيُقرأ
+             «يناير، ما يُزرع: طماطم» لا كلمتين منفصلتين.
+         وجدولٌ بلا هذين يُقرأ سيلاً من الكلمات لا معنى لترتيبها.
+
+         والشهورُ رؤوسُ صفوفٍ (`<th scope="row">`) لا خلايا: الشهر هو ما
+         يُبحث عنه، وهو يُعرّف الصفّ.
+    ══════════════════════════════════════════════════════════════════ -->
+    <section class="section" id="calendar">
+      <div class="container">
+        <div class="section__head">
+          <h2>روزنامة الزراعة</h2>
+          <p>
+            مناخ العين يختلف عن الساحل: صيفٌ أشدّ، وشتاءٌ أبرد قليلاً.
+            وهذه الروزنامة مبنيّةٌ على تجربة متطوّعينا في المدينة نفسها.
+          </p>
+        </div>
+
+        <div class="table-wrap">
+          <table class="table">
+            <caption>ماذا تزرع في كلّ شهر — مناخ مدينة العين</caption>
+
+            <thead>
+              <tr>
+                <th scope="col">الشهر</th>
+                <th scope="col">ما يُزرع</th>
+                <th scope="col">صعوبته</th>
+                <th scope="col">ملاحظة</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <th scope="row">أكتوبر</th>
+                <td>طماطم · فلفل · باذنجان</td>
+                <td>سهل</td>
+                <td>أفضل شهرٍ للبدء — الحرّ انكسر</td>
+              </tr>
+              <tr>
+                <th scope="row">نوفمبر</th>
+                <td>خسّ · جرجير · سبانخ</td>
+                <td>سهل جدّاً</td>
+                <td>الورقيات تنبت في أيام</td>
+              </tr>
+              <tr>
+                <th scope="row">ديسمبر</th>
+                <td>جزر · فجل · بصل</td>
+                <td>متوسّط</td>
+                <td>تحتاج تربةً عميقة</td>
+              </tr>
+              <tr>
+                <th scope="row">يناير</th>
+                <td>نعناع · بقدونس · كزبرة</td>
+                <td>سهل</td>
+                <td>الأعشاب تعيش سنواتٍ بعدها</td>
+              </tr>
+              <tr>
+                <th scope="row">فبراير</th>
+                <td>كوسا · خيار</td>
+                <td>متوسّط</td>
+                <td>تحتاج مساحةً للتمدّد</td>
+              </tr>
+              <tr>
+                <th scope="row">مارس</th>
+                <td>بامية · ذرة</td>
+                <td>متوسّط</td>
+                <td>آخر فرصةٍ قبل الحرّ</td>
+              </tr>
+              <tr>
+                <th scope="row">أبريل — سبتمبر</th>
+                <td>لا زراعة — إلّا ما يتحمّل الحرّ</td>
+                <td>صعب</td>
+                <td>موسمُ راحةٍ للتربة وتجهيزٍ للخريف</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="text-center mt-6" style="font-size: var(--fs-sm); color: var(--ink-soft);">
+          الجدول يمرّر أفقياً على الشاشات الصغيرة.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="grid">
+        <div class="col-4">
+          <h3>واحة</h3>
+          <p style="font-size: var(--fs-sm);">
+            مبادرةٌ مجتمعية تطوّعية في مدينة العين، تساعد السكّان على
+            زراعة أسطح منازلهم.
+          </p>
+        </div>
+        <div class="col-4">
+          <h3>روابط</h3>
+          <ul class="footer__list">
+            <li><a href="about.html">من نحن</a></li>
+            <li><a href="workshops.html">الورش وروزنامة الزراعة</a></li>
+            <li><a href="guide.html">دليل المبتدئ</a></li>
+            <li><a href="contact.html">تواصل معنا</a></li>
+          </ul>
+        </div>
+        <div class="col-4">
+          <h3>تواصل</h3>
+          <ul class="footer__list">
+            <li><a href="tel:+97137654321">٠٣ ٧٦٥ ٤٣٢١</a></li>
+            <li><a href="mailto:hello@wahat-alain.ae">hello@wahat-alain.ae</a></li>
+            <li>
+              <a href="https://www.moccae.gov.ae/" target="_blank" rel="noopener noreferrer">
+                وزارة التغيّر المناخي والبيئة
+                <span class="sr-only">(يفتح في تبويب جديد)</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p style="margin: 0;">
+          © <span id="year">2026</span> مبادرة واحة — مشروعٌ طلّابيّ لمساق
+          تصميم مواقع الويب (DMC402)، جامعة ليوا.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

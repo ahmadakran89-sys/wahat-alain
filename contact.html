@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<!--
+  واحة — تواصل معنا.
+
+  ما تحمله من بنود المشروع المطلوبة:
+    • **النموذج** (بندٌ مطلوب: نموذجٌ يضمّ صندوق نصّ ومربّعات اختيار)
+    • صندوق نصّ (textarea) · مربّعات اختيار (checkbox) · قائمة منسدلة
+
+  **ولا خادم في المشروع**، فالنموذج يتحقّق ويعرض رسالة نجاح ولا يُرسل.
+  وذلك مكتوبٌ في ARCHITECTURE.md §"الدين المعروف" لا مخفيّ.
+-->
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تواصل معنا — واحة</title>
+  <meta name="description" content="سجّل في ورشة واحة، أو تطوّع معنا، أو اسأل سؤالاً — نردّ خلال يومي عمل.">
+
+  <link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+
+  <a class="skip" href="#main">تخطَّ إلى المحتوى</a>
+
+  <header class="header">
+    <div class="container header__inner">
+      <a class="logo" href="index.html">
+        <img src="assets/img/logo.svg" alt="" width="40" height="40">
+        <span>واحة</span>
+      </a>
+      <button class="nav__toggle" type="button"
+              aria-expanded="false" aria-controls="nav-list"
+              aria-label="افتح القائمة">☰</button>
+      <nav aria-label="التنقّل الرئيس">
+        <ul class="nav__list" id="nav-list">
+          <li><a class="nav__link" href="index.html">الرئيسية</a></li>
+          <li><a class="nav__link" href="about.html">من نحن</a></li>
+          <li><a class="nav__link" href="workshops.html">الورش</a></li>
+          <li><a class="nav__link" href="guide.html">دليل المبتدئ</a></li>
+          <li><a class="nav__link" href="contact.html" aria-current="page">تواصل معنا</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <section class="section section--tight">
+      <div class="container">
+        <div class="section__head">
+          <h1>تواصل معنا</h1>
+          <p>
+            سجّل في ورشة، أو تطوّع، أو اسأل — نردّ خلال يومَي عمل.
+            ومن يفضّل الهاتف، رقمُنا في أسفل الصفحة.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt section--tight">
+      <div class="container">
+        <div class="grid">
+
+          <!-- ══ النموذج — بندٌ مطلوب ══════════════════════════════════ -->
+          <div class="col-6">
+
+            <!--
+              رسالة النجاح: `role="status"` فيقرأها قارئ الشاشة عند
+              ظهورها بلا أن يُنقل تركيز القارئ قسراً، و`tabindex="-1"`
+              ليستطيع الجافاسكربت تركيزها بعد الإرسال.
+            -->
+            <div class="form__success" id="form-success" role="status" tabindex="-1">
+              ✅ وصلتنا رسالتك. سنردّ خلال يومَي عمل على بريدك.
+            </div>
+
+            <!--
+              `novalidate` يُعطّل فقاعات المتصفّح الإنجليزية، والتحقّق
+              يقع في `main.js` برسائل عربية في مكان الحقل.
+              وسماتُ `required` و`type="email"` تبقى: فمن عطّل
+              الجافاسكربت يحصل على تحقّق المتصفّح الأصيل بدل لا شيء.
+            -->
+            <form class="form" id="contact-form" novalidate>
+
+              <div class="field">
+                <label class="field__label" for="name">
+                  الاسم <span class="field__req" aria-hidden="true">*</span>
+                </label>
+                <input class="input" type="text" id="name" name="name"
+                       required minlength="2" autocomplete="name"
+                       aria-describedby="error-name">
+                <span class="error" id="error-name" role="alert"></span>
+              </div>
+
+              <div class="field">
+                <label class="field__label" for="email">
+                  البريد الإلكتروني <span class="field__req" aria-hidden="true">*</span>
+                </label>
+                <input class="input" type="email" id="email" name="email"
+                       required autocomplete="email" dir="ltr"
+                       aria-describedby="hint-email error-email">
+                <span class="field__hint" id="hint-email">لن نرسل لك شيئاً غير ما تطلبه.</span>
+                <span class="error" id="error-email" role="alert"></span>
+              </div>
+
+              <div class="field">
+                <label class="field__label" for="phone">رقم الهاتف</label>
+                <input class="input" type="tel" id="phone" name="phone"
+                       autocomplete="tel" dir="ltr"
+                       aria-describedby="hint-phone">
+                <span class="field__hint" id="hint-phone">اختياري — نتّصل فقط إن احتجنا توضيحاً.</span>
+              </div>
+
+              <!-- ── مربّعات الاختيار — بندٌ مطلوب ─────────────────────
+
+                   و`<fieldset>` و`<legend>` لا `<div>` وعنوان: الأوّلان
+                   يربطان الخيارات مجموعةً واحدة، فيقرأ قارئ الشاشة
+                   «سبب التواصل: مجموعة، ٤ خيارات» قبل أن يعدّها.
+
+                   ولا سمة `required` تعمل على مجموعة checkboxes في
+                   HTML — ولهذا يفحصها `main.js` بنفسه. -->
+              <fieldset style="border: 0; padding: 0; margin: 0;">
+                <legend class="field__label" style="padding: 0; margin-block-end: var(--sp-2);">
+                  سبب تواصلك <span class="field__req" aria-hidden="true">*</span>
+                </legend>
+                <span class="field__hint" style="display: block; margin-block-end: var(--sp-3);">
+                  اختر واحداً أو أكثر.
+                </span>
+
+                <div class="checks">
+                  <label class="check">
+                    <input type="checkbox" name="interest" value="workshop">
+                    <span>التسجيل في ورشة</span>
+                  </label>
+                  <label class="check">
+                    <input type="checkbox" name="interest" value="volunteer">
+                    <span>التطوّع معكم</span>
+                  </label>
+                  <label class="check">
+                    <input type="checkbox" name="interest" value="seedlings">
+                    <span>طلب شتلات</span>
+                  </label>
+                  <label class="check">
+                    <input type="checkbox" name="interest" value="question">
+                    <span>سؤالٌ عن الزراعة</span>
+                  </label>
+                </div>
+                <span class="error" id="error-interest" role="alert"></span>
+              </fieldset>
+
+              <div class="field">
+                <label class="field__label" for="area">منطقتك في العين</label>
+                <select class="select" id="area" name="area">
+                  <option value="">اختر منطقتك</option>
+                  <option value="jahili">الجاهلي</option>
+                  <option value="muwaiji">المويجعي</option>
+                  <option value="hili">هيلي</option>
+                  <option value="maqam">المقام</option>
+                  <option value="other">منطقةٌ أخرى</option>
+                </select>
+              </div>
+
+              <!-- ── صندوق النصّ — بندٌ مطلوب ───────────────────────── -->
+              <div class="field">
+                <label class="field__label" for="message">
+                  رسالتك <span class="field__req" aria-hidden="true">*</span>
+                </label>
+                <textarea class="textarea" id="message" name="message"
+                          required minlength="10"
+                          placeholder="اكتب هنا… مثلاً: عندي سطحٌ ٣×٤ أمتار، من أين أبدأ؟"
+                          aria-describedby="error-message"></textarea>
+                <span class="error" id="error-message" role="alert"></span>
+              </div>
+
+              <button class="btn btn--primary" type="submit" style="justify-self: start;">
+                أرسل الرسالة
+              </button>
+
+              <p style="font-size: var(--fs-xs); color: var(--ink-soft); margin: 0;">
+                الحقول المعلَّمة بـ<span class="field__req">*</span> مطلوبة.
+              </p>
+            </form>
+          </div>
+
+          <!-- ── معلومات التواصل ───────────────────────────────────── -->
+          <div class="col-6">
+            <div class="card">
+              <h2 style="font-size: var(--fs-xl);">تجدنا هنا</h2>
+
+              <h3 style="font-size: var(--fs-base); margin-block-start: var(--sp-5);">المكان</h3>
+              <p>
+                مشتلُ المبادرة — بجوار حديقة الجاهلي العامّة<br>
+                شارع الجاهلي، العين، أبوظبي
+              </p>
+
+              <h3 style="font-size: var(--fs-base);">أوقات الزيارة</h3>
+              <p>
+                السبت إلى الخميس: ٤ – ٧ مساءً<br>
+                الجمعة: مغلق
+              </p>
+
+              <h3 style="font-size: var(--fs-base);">اتّصل أو راسل</h3>
+              <ul class="footer__list" style="color: var(--ink);">
+                <li>📞 <a href="tel:+97137654321" dir="ltr">03 765 4321</a></li>
+                <li>✉️ <a href="mailto:hello@wahat-alain.ae">hello@wahat-alain.ae</a></li>
+              </ul>
+
+              <p class="card__meta">
+                نردّ على الرسائل خلال يومَي عمل. وفي موسم الورش قد يتأخّر
+                الردّ يوماً — فالفريق كلُّه متطوّع.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="grid">
+        <div class="col-4">
+          <h3>واحة</h3>
+          <p style="font-size: var(--fs-sm);">
+            مبادرةٌ مجتمعية تطوّعية في مدينة العين، تساعد السكّان على
+            زراعة أسطح منازلهم.
+          </p>
+        </div>
+        <div class="col-4">
+          <h3>روابط</h3>
+          <ul class="footer__list">
+            <li><a href="about.html">من نحن</a></li>
+            <li><a href="workshops.html">الورش وروزنامة الزراعة</a></li>
+            <li><a href="guide.html">دليل المبتدئ</a></li>
+            <li><a href="contact.html">تواصل معنا</a></li>
+          </ul>
+        </div>
+        <div class="col-4">
+          <h3>تواصل</h3>
+          <ul class="footer__list">
+            <li><a href="tel:+97137654321">٠٣ ٧٦٥ ٤٣٢١</a></li>
+            <li><a href="mailto:hello@wahat-alain.ae">hello@wahat-alain.ae</a></li>
+            <li>
+              <a href="https://www.moccae.gov.ae/" target="_blank" rel="noopener noreferrer">
+                وزارة التغيّر المناخي والبيئة
+                <span class="sr-only">(يفتح في تبويب جديد)</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p style="margin: 0;">
+          © <span id="year">2026</span> مبادرة واحة — مشروعٌ طلّابيّ لمساق
+          تصميم مواقع الويب (DMC402)، جامعة ليوا.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

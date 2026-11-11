@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<!--
+  واحة — من نحن.
+
+  ما تحمله من بنود المشروع المطلوبة:
+    • قوائم · روابط داخلية · صور ثابتة
+    • قصّة المبادرة والفريق والأرقام (بناءُ الثقة — هدفٌ في PLAN.md)
+-->
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>من نحن — واحة</title>
+  <meta name="description" content="قصّة مبادرة واحة: كيف بدأت من سطحٍ واحد في العين، ومن هم المتطوّعون خلفها.">
+
+  <link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+
+  <a class="skip" href="#main">تخطَّ إلى المحتوى</a>
+
+  <header class="header">
+    <div class="container header__inner">
+      <a class="logo" href="index.html">
+        <img src="assets/img/logo.svg" alt="" width="40" height="40">
+        <span>واحة</span>
+      </a>
+      <button class="nav__toggle" type="button"
+              aria-expanded="false" aria-controls="nav-list"
+              aria-label="افتح القائمة">☰</button>
+      <nav aria-label="التنقّل الرئيس">
+        <ul class="nav__list" id="nav-list">
+          <li><a class="nav__link" href="index.html">الرئيسية</a></li>
+          <li><a class="nav__link" href="about.html" aria-current="page">من نحن</a></li>
+          <li><a class="nav__link" href="workshops.html">الورش</a></li>
+          <li><a class="nav__link" href="guide.html">دليل المبتدئ</a></li>
+          <li><a class="nav__link" href="contact.html">تواصل معنا</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <section class="section section--tight">
+      <div class="container">
+        <div class="section__head">
+          <h1>من نحن</h1>
+          <p>بدأنا بسطحٍ واحد، وصرنا مئةً وثمانين.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── القصّة ────────────────────────────────────────────────────── -->
+    <section class="section section--alt section--tight">
+      <div class="container">
+        <div class="grid" style="align-items: center;">
+          <div class="col-6">
+            <h2>كيف بدأت</h2>
+            <p>
+              في ربيع ٢٠٢٤، زرع ثلاثةُ جيرانٍ في حيّ المويجعي أحواضَ خضارٍ
+              على أسطح بيوتهم. لم تكن تجربةً منظَّمة — كانوا يتبادلون
+              النصائح عبر مجموعةٍ في الواتساب، ويتقاسمون الشتلات.
+            </p>
+            <p>
+              وحين صارت المجموعة أربعين شخصاً، ظهر نمطٌ واضح: كلُّ قادمٍ
+              جديد يسأل الأسئلة الثلاثة نفسها — <em>من أين أشتري التربة؟
+              ومتى أزرع؟ ولماذا ماتت نبتتي؟</em>
+            </p>
+            <p>
+              فكانت الورشة الأولى محاولةً للإجابة مرّةً واحدة بدل أربعين.
+              حضرها أحدَ عشرَ شخصاً في فناء بيت. واليوم نُقيم ورشةً كلّ
+              شهر في حديقة الجاهلي العامّة.
+            </p>
+          </div>
+
+          <div class="col-6">
+            <img src="assets/img/first-rooftop.svg"
+                 alt="السطح الأوّل في حيّ المويجعي: ستّة أحواضٍ خشبية فيها خضارٌ ورقية"
+                 width="540" height="400" loading="lazy"
+                 style="border-radius: var(--r-lg); box-shadow: var(--shadow-md);">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── ما نؤمن به ────────────────────────────────────────────────── -->
+    <section class="section">
+      <div class="container">
+        <div class="section__head">
+          <h2>ثلاثةُ مبادئ نعمل بها</h2>
+        </div>
+
+        <div class="grid">
+          <article class="col-4">
+            <div class="card">
+              <div class="card__icon" aria-hidden="true">🫱</div>
+              <h3>نبدأ معك لا نشرح لك</h3>
+              <p>
+                الشرح وحده لا يُنبت شيئاً. فالمتطوّع يأتي بيتك ويركّب معك
+                الحوض الأوّل بيديه — لأنّ أصعب خطوةٍ هي الأولى.
+              </p>
+            </div>
+          </article>
+
+          <article class="col-4">
+            <div class="card">
+              <div class="card__icon" aria-hidden="true">🌡️</div>
+              <h3>نزرع ما يناسب العين</h3>
+              <p>
+                كثيرٌ من النصائح على الإنترنت مكتوبةٌ لمناخٍ آخر. ونحن
+                نجرّب في المدينة نفسها، ونقول ما نجح وما فشل عندنا.
+              </p>
+            </div>
+          </article>
+
+          <article class="col-4">
+            <div class="card">
+              <div class="card__icon" aria-hidden="true">💚</div>
+              <h3>لا نبيع شيئاً</h3>
+              <p>
+                الورش مجّانية، وثمن الشتلة يغطّي كلفتها وحدها. والفريق
+                كلُّه متطوّع — لا موظّف واحد.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── الفريق ────────────────────────────────────────────────────── -->
+    <section class="section section--alt">
+      <div class="container">
+        <div class="section__head">
+          <h2>الفريق</h2>
+          <p>سبعةٌ وعشرون متطوّعاً، وهؤلاء من ينسّقون العمل.</p>
+        </div>
+
+        <div class="grid">
+          <article class="col-4">
+            <div class="card text-center">
+              <img src="assets/img/team-1.svg" alt="صورة سارة المنصوري"
+                   width="120" height="120" loading="lazy"
+                   style="border-radius: 50%; margin-inline: auto; margin-block-end: var(--sp-4);">
+              <h3>سارة المنصوري</h3>
+              <p class="card__meta" style="margin-block-start: 0;">منسّقة الورش</p>
+              <p>مهندسةٌ زراعية، وصاحبةُ السطح الأوّل الذي بدأت منه الفكرة.</p>
+            </div>
+          </article>
+
+          <article class="col-4">
+            <div class="card text-center">
+              <img src="assets/img/team-2.svg" alt="صورة خالد البلوشي"
+                   width="120" height="120" loading="lazy"
+                   style="border-radius: 50%; margin-inline: auto; margin-block-end: var(--sp-4);">
+              <h3>خالد البلوشي</h3>
+              <p class="card__meta" style="margin-block-start: 0;">مسؤول المشتل</p>
+              <p>يُكثر الشتلات ويختار ما يناسب كلّ موسمٍ في مناخ العين.</p>
+            </div>
+          </article>
+
+          <article class="col-4">
+            <div class="card text-center">
+              <img src="assets/img/team-3.svg" alt="صورة مريم الكعبي"
+                   width="120" height="120" loading="lazy"
+                   style="border-radius: 50%; margin-inline: auto; margin-block-end: var(--sp-4);">
+              <h3>مريم الكعبي</h3>
+              <p class="card__meta" style="margin-block-start: 0;">منسّقة المتطوّعين</p>
+              <p>تنظّم زيارات التركيب، وتوزّع المتطوّعين على أحياء المدينة.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="text-center mt-6">
+          <a class="btn btn--primary" href="contact.html">تطوّع معنا</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── الأرقام ───────────────────────────────────────────────────── -->
+    <section class="section">
+      <div class="container">
+        <div class="section__head">
+          <h2>أثرُنا بالأرقام</h2>
+          <p>منذ الورشة الأولى في مايو ٢٠٢٤.</p>
+        </div>
+        <div class="stats">
+          <div class="stat">
+            <span class="stat__num">٣٤</span>
+            <span class="stat__label">ورشةً أُقيمت</span>
+          </div>
+          <div class="stat">
+            <span class="stat__num">٦١٢</span>
+            <span class="stat__label">مشاركاً حضروا</span>
+          </div>
+          <div class="stat">
+            <span class="stat__num">١٨٠</span>
+            <span class="stat__label">سطحاً أُنشئ</span>
+          </div>
+          <div class="stat">
+            <span class="stat__num">٢٧</span>
+            <span class="stat__label">متطوّعاً</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="grid">
+        <div class="col-4">
+          <h3>واحة</h3>
+          <p style="font-size: var(--fs-sm);">
+            مبادرةٌ مجتمعية تطوّعية في مدينة العين، تساعد السكّان على
+            زراعة أسطح منازلهم.
+          </p>
+        </div>
+        <div class="col-4">
+          <h3>روابط</h3>
+          <ul class="footer__list">
+            <li><a href="about.html">من نحن</a></li>
+            <li><a href="workshops.html">الورش وروزنامة الزراعة</a></li>
+            <li><a href="guide.html">دليل المبتدئ</a></li>
+            <li><a href="contact.html">تواصل معنا</a></li>
+          </ul>
+        </div>
+        <div class="col-4">
+          <h3>تواصل</h3>
+          <ul class="footer__list">
+            <li><a href="tel:+97137654321">٠٣ ٧٦٥ ٤٣٢١</a></li>
+            <li><a href="mailto:hello@wahat-alain.ae">hello@wahat-alain.ae</a></li>
+            <li>
+              <a href="https://www.moccae.gov.ae/" target="_blank" rel="noopener noreferrer">
+                وزارة التغيّر المناخي والبيئة
+                <span class="sr-only">(يفتح في تبويب جديد)</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p style="margin: 0;">
+          © <span id="year">2026</span> مبادرة واحة — مشروعٌ طلّابيّ لمساق
+          تصميم مواقع الويب (DMC402)، جامعة ليوا.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

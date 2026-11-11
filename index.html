@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<!--
+  واحة — الصفحة الرئيسة.
+
+  ما تحمله من بنود المشروع المطلوبة:
+    • الفيديو (بندٌ مطلوب: مقطع فيديو واحد على الأقلّ)
+    • قائمة التنقّل الثابتة
+    • روابط تشعّبية داخلية وخارجية
+    • قوائم (ul)
+
+  الوثائق: .antigravity/ARCHITECTURE.md
+-->
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>واحة — ازرع سطحك في العين</title>
+  <meta name="description" content="مبادرة مجتمعية تطوّعية تساعد سكّان العين على تحويل أسطح منازلهم إلى حدائق منزلية: ورشٌ تدريبية، وشتلاتٌ موسمية، ومتطوّعون يركّبون أوّل حوضٍ مجاناً.">
+
+  <link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+
+  <a class="skip" href="#main">تخطَّ إلى المحتوى</a>
+
+  <!-- ── الترويسة: ثابتة في كلّ الصفحات الخمس ───────────────────────── -->
+  <header class="header">
+    <div class="container header__inner">
+      <a class="logo" href="index.html">
+        <img src="assets/img/logo.svg" alt="" width="40" height="40">
+        <span>واحة</span>
+      </a>
+
+      <button class="nav__toggle" type="button"
+              aria-expanded="false" aria-controls="nav-list"
+              aria-label="افتح القائمة">☰</button>
+
+      <nav aria-label="التنقّل الرئيس">
+        <ul class="nav__list" id="nav-list">
+          <li><a class="nav__link" href="index.html" aria-current="page">الرئيسية</a></li>
+          <li><a class="nav__link" href="about.html">من نحن</a></li>
+          <li><a class="nav__link" href="workshops.html">الورش</a></li>
+          <li><a class="nav__link" href="guide.html">دليل المبتدئ</a></li>
+          <li><a class="nav__link" href="contact.html">تواصل معنا</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ── الواجهة ───────────────────────────────────────────────────── -->
+    <section class="hero">
+      <div class="container hero__inner">
+        <div>
+          <h1>سطحُ بيتك <span class="mark">يستحقّ أن يُزرع</span></h1>
+          <p class="hero__lede">
+            مبادرةٌ تطوّعية في العين تساعدك على تحويل سطحك أو فناءك إلى
+            حديقةٍ منزلية — بورشةٍ تحضرها، وشتلةٍ تأخذها، ومتطوّعٍ يركّب
+            لك أوّل حوضٍ مجاناً.
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="workshops.html">احجز مقعدك في الورشة</a>
+            <a class="btn btn--ghost" href="guide.html">كيف أبدأ؟</a>
+          </div>
+        </div>
+
+        <div>
+          <!-- الصورة الأولى في الصفحة: `eager` لأنّها فوق الطيّة. -->
+          <img src="assets/img/hero-plants.svg"
+               alt="أحواضُ خضارٍ على سطح منزلٍ في العين، وفيها طماطم ونعناع"
+               width="560" height="420" loading="eager"
+               style="border-radius: var(--r-lg); box-shadow: var(--shadow-lg);">
+        </div>
+      </div>
+    </section>
+
+    <!-- ── ماذا نقدّم ────────────────────────────────────────────────── -->
+    <section class="section section--alt">
+      <div class="container">
+        <div class="section__head">
+          <h2>ثلاثةُ أشياء نقدّمها</h2>
+          <p>لا نبيع شيئاً. نحن متطوّعون، وما نأخذه يغطّي كلفة الشتلات وحدها.</p>
+        </div>
+
+        <div class="grid">
+          <article class="col-4">
+            <div class="card">
+              <div class="card__icon" aria-hidden="true">🌱</div>
+              <h3>ورشٌ شهرية</h3>
+              <p>
+                ساعتان تتعلّم فيهما الأساس: التربة، والريّ، واختيار ما
+                يناسب حرارة العين. مجّانيةٌ بالكامل.
+              </p>
+              <p class="card__meta">السبت الأوّل من كلّ شهر</p>
+            </div>
+          </article>
+
+          <article class="col-4">
+            <div class="card">
+              <div class="card__icon" aria-hidden="true">🪴</div>
+              <h3>شتلاتٌ موسمية</h3>
+              <p>
+                شتلاتٌ نُكثرها بأنفسنا، ونختارها لما يُزرع في شهرها —
+                فلا تشتري نبتةً تموت بعد أسبوعين.
+              </p>
+              <p class="card__meta">من ٥ إلى ١٥ درهماً للشتلة</p>
+            </div>
+          </article>
+
+          <article class="col-4">
+            <div class="card">
+              <div class="card__icon" aria-hidden="true">🤝</div>
+              <h3>متطوّعٌ يبدأ معك</h3>
+              <p>
+                أصعبُ خطوةٍ هي الأولى. فيأتيك متطوّعٌ منّا ويركّب معك أوّل
+                حوضٍ في بيتك، مجّاناً.
+              </p>
+              <p class="card__meta">بموعدٍ مسبق</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── الفيديو — بندٌ مطلوب ──────────────────────────────────────── -->
+    <section class="section">
+      <div class="container">
+        <div class="section__head">
+          <h2>شاهد كيف بدأت أمّ خالد</h2>
+          <p>ثلاث دقائق من سطحٍ فارغ إلى أوّل حصاد.</p>
+        </div>
+
+        <div class="grid">
+          <div class="col-12" style="max-width: 860px; margin-inline: auto;">
+            <div class="video">
+              <!--
+                فيديو محلّيّ لا مضمَّنٌ من يوتيوب:
+                  • يعمل بلا إنترنت — والملفّ يجيز التسليم كملفّاتٍ تعمل
+                    مباشرةً على المتصفّح، فالمضمَّن كان سينكسر حينها.
+                  • لا يُحمّل سكربتات طرفٍ ثالث، فالصفحة أسرع.
+                و`poster` يحجز الصورة قبل الضغط فلا يظهر مستطيلٌ أسود.
+              -->
+              <video controls preload="none"
+                     poster="assets/img/video-poster.svg">
+                <source src="assets/video/umm-khaled.mp4" type="video/mp4">
+                <p>
+                  متصفّحك لا يدعم تشغيل الفيديو.
+                  <a href="assets/video/umm-khaled.mp4">نزّل المقطع</a> لمشاهدته.
+                </p>
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── الورشة القادمة ────────────────────────────────────────────── -->
+    <section class="section section--alt">
+      <div class="container">
+        <div class="grid" style="align-items: center;">
+          <div class="col-6">
+            <h2>الورشة القادمة</h2>
+            <p style="font-size: var(--fs-lg); color: var(--ink-soft);">
+              <strong>«ابدأ بحوضٍ واحد»</strong> — ورشةٌ للمبتدئين تماماً.
+            </p>
+            <ul style="line-height: 2.2; padding-inline-start: var(--sp-5);">
+              <li><strong>التاريخ:</strong> السبت ٦ ديسمبر ٢٠٢٦</li>
+              <li><strong>الوقت:</strong> من ٤ إلى ٦ مساءً</li>
+              <li><strong>المكان:</strong> حديقة الجاهلي العامّة، العين</li>
+              <li><strong>المقاعد:</strong> ٢٥ مقعداً — بقي ٨</li>
+            </ul>
+            <a class="btn btn--accent mt-6" href="contact.html">سجّل الآن</a>
+          </div>
+
+          <div class="col-6">
+            <img src="assets/img/workshop.svg"
+                 alt="مجموعةٌ من المشاركين حول طاولةٍ فيها أحواضٌ وتربة في ورشةٍ سابقة"
+                 width="540" height="400" loading="lazy"
+                 style="border-radius: var(--r-lg); box-shadow: var(--shadow-md);">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── الأرقام ───────────────────────────────────────────────────── -->
+    <section class="section">
+      <div class="container">
+        <div class="section__head">
+          <h2>منذ ٢٠٢٤</h2>
+        </div>
+        <div class="stats">
+          <div class="stat">
+            <span class="stat__num">٣٤</span>
+            <span class="stat__label">ورشةً أُقيمت</span>
+          </div>
+          <div class="stat">
+            <span class="stat__num">٦١٢</span>
+            <span class="stat__label">مشاركاً حضروا</span>
+          </div>
+          <div class="stat">
+            <span class="stat__num">١٨٠</span>
+            <span class="stat__label">سطحاً أُنشئ</span>
+          </div>
+          <div class="stat">
+            <span class="stat__num">٢٧</span>
+            <span class="stat__label">متطوّعاً</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── التذييل: ثابت في كلّ الصفحات ──────────────────────────────── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="grid">
+        <div class="col-4">
+          <h3>واحة</h3>
+          <p style="font-size: var(--fs-sm);">
+            مبادرةٌ مجتمعية تطوّعية في مدينة العين، تساعد السكّان على
+            زراعة أسطح منازلهم.
+          </p>
+        </div>
+
+        <div class="col-4">
+          <h3>روابط</h3>
+          <ul class="footer__list">
+            <li><a href="about.html">من نحن</a></li>
+            <li><a href="workshops.html">الورش وروزنامة الزراعة</a></li>
+            <li><a href="guide.html">دليل المبتدئ</a></li>
+            <li><a href="contact.html">تواصل معنا</a></li>
+          </ul>
+        </div>
+
+        <div class="col-4">
+          <h3>تواصل</h3>
+          <ul class="footer__list">
+            <li><a href="tel:+97137654321">٠٣ ٧٦٥ ٤٣٢١</a></li>
+            <li><a href="mailto:hello@wahat-alain.ae">hello@wahat-alain.ae</a></li>
+            <li>
+              <!--
+                روابط خارجية — بندٌ مطلوب: «روابط تشعّبية داخلية وخارجية».
+                و`rel="noopener"` يمنع الصفحة المفتوحة من الوصول إلى
+                `window.opener` وتحويل تبويبنا.
+              -->
+              <a href="https://www.moccae.gov.ae/" target="_blank" rel="noopener noreferrer">
+                وزارة التغيّر المناخي والبيئة
+                <span class="sr-only">(يفتح في تبويب جديد)</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p style="margin: 0;">
+          © <span id="year">2026</span> مبادرة واحة — مشروعٌ طلّابيّ لمساق
+          تصميم مواقع الويب (DMC402)، جامعة ليوا.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -4,3 +4,8 @@
 Thumbs.db
 node_modules/
 package-lock.json
+
+# مصدرُ الصورة المتحرّكة — 6.1 ميغابايت، يُحفظ محلّياً ولا يُنشر.
+# والناتج المضغوط (growth.gif) هو ما يُرفع، وسكربتُ البناء يُعيد
+# توليده من المصدر عند الحاجة.
+assets/img/growth-source.gif

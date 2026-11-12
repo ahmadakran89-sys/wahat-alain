@@ -79,6 +79,13 @@
     form.addEventListener('submit', function (e) {
       e.preventDefault();
 
+      /* رسالةُ النجاح تُخفى عند كلّ محاولةٍ جديدة.
+
+         **وبلا هذا تبقى ظاهرةً بعد إرسالٍ ناجح**، فمن يملأ النموذج
+         مرّةً ثانية ويُخطئ يرى «وصلتنا رسالتك» فوق رسائل الخطأ معاً —
+         فيظنّ أنّها وصلت وهي لم تُرسَل. */
+      if (success) success.classList.remove('is-shown');
+
       let ok = true;
       let firstBad = null;
 

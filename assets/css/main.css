@@ -618,6 +618,12 @@ img { max-width: 100%; height: auto; display: block; }
   /* القائمة تنطوي خلف زرّ: ستّة روابط في صفٍّ واحد على 360px تتداخل. */
   .nav__toggle { display: inline-flex; }
 
+  /* والشعار يصغر قليلاً: «واحة العين» أطول من «واحة» بخمسة محارف،
+     وعلى 360px يزاحم زرّ القائمة. و20px تُبقيه مقروءاً وفوق أرضيّة
+     الحجم (13px) بمريح. */
+  .logo { font-size: var(--fs-lg); }
+  .logo img { width: 34px; height: 34px; }
+
   .nav__list {
     display: none;
     position: absolute;
